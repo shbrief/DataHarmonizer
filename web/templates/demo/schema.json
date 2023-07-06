@@ -1471,28 +1471,15 @@
     }
   },
   "classes": {
-    "Container": {
-      "name": "Container",
-      "from_schema": "https://waldronlab.io",
-      "attributes": {
-        "samples": {
-          "name": "samples",
-          "from_schema": "https://waldronlab.io",
-          "multivalued": true,
-          "alias": "samples",
-          "owner": "Container",
-          "domain_of": [
-            "Container"
-          ],
-          "range": "Sample",
-          "inlined_as_list": true
-        }
-      },
-      "tree_root": true
+    "dh_interface": {
+      "name": "dh_interface",
+      "description": "A DataHarmonizer interface",
+      "from_schema": "https://waldronlab.io"
     },
     "Sample": {
       "name": "Sample",
       "from_schema": "https://waldronlab.io",
+      "is_a": "dh_interface",
       "slot_usage": {
         "sample_id": {
           "name": "sample_id",

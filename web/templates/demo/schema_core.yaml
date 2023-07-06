@@ -7,15 +7,12 @@ imports:
 prefixes:
   linkml: 'https://w3id.org/linkml/'
 classes:
-  Container:
-    tree_root: true
-    attributes:
-      samples:
-        multivalued: true
-        inlined_as_list: true
-        range: Sample
+  dh_interface:
+    name: dh_interface
+    description: A DataHarmonizer interface
+    from_schema: https://example.com/cMD_Curation_Schema
   Sample:
-    slots: 
+    slots:
       - sample_id
       - age
       - age_unit
@@ -24,6 +21,7 @@ classes:
       - target_condition
       - disease
       - treatment
+    is_a: dh_interface
 slots: {}
 enums: {}
 types:

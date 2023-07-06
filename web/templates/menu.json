@@ -61,15 +61,10 @@
     }
   },
   "demo": {
-    "Container": {
-      "name": "Container",
-      "status": "published",
-      "display": false
-    },
     "Sample": {
       "name": "Sample",
       "status": "published",
-      "display": false
+      "display": true
     }
   }
 }
