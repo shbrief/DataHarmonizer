@@ -1,0 +1,9 @@
+class_name	slot_group	title	name	slot_uri	range	range_2	identifier	multivalued	required	recommended	minimum_value	maximum_value	pattern	structured_pattern	description	comments	examples
+Sample	Database Identifiers	sample_id			WhitespaceMinimizedString		TRUE		TRUE						The user-defined name for the sample.		
+	Participant	age		NCIT:C25150	integer						0	200			Age of the subject using the unit specified under 'age_unit' column		2
+	Participant	age_unit		NCIT:C50400	age unit menu									{Title_Case}	Unit of the subject's age specified under 'age' column		Year
+	Participant	age_group		NCIT:C20587	age group menu					TRUE					11 <= Adolescent < 18|18 <= Adult < 65|2 <= Children 2-11 Years Old < 11|65 <= Elderly < 130|0 <= Infant < 2		Children 2-11 Years Old
+	Participant	control			control menu				TRUE						Whether the sample is control, case, or not used in the study		Study Control
+	Participant	target_condition			target condition menu			TRUE	TRUE						Main phenotype(s) of interest in a given study		
+	Participant	disease			disease menu			TRUE							Reported disease type(s) for a participant. 'Healthy' if no disease assessed under a given study is detected		
+	Participant	treatment			treatment menu			TRUE							Medications or treatments against the diseases		

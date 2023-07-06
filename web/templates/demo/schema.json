@@ -1,0 +1,1674 @@
+{
+  "name": "cMD_Curation_Schema",
+  "description": "",
+  "id": "https://waldronlab.io",
+  "version": "0.0.1",
+  "prefixes": {
+    "linkml": {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    "xsd": {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "shex": {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
+    },
+    "schema": {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    }
+  },
+  "default_prefix": "https://waldronlab.io/",
+  "types": {
+    "WhitespaceMinimizedString": {
+      "name": "WhitespaceMinimizedString",
+      "description": "A string that has all whitespace trimmed off of beginning and end, and all internal whitespace segments reduced to single spaces. Whitespace includes #x9 (tab), #xA (linefeed), and #xD (carriage return).",
+      "from_schema": "https://waldronlab.io",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:token"
+    },
+    "Provenance": {
+      "name": "Provenance",
+      "description": "A field containing a DataHarmonizer versioning marker. It is issued by DataHarmonizer when validation is applied to a given row of data.",
+      "from_schema": "https://waldronlab.io",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:token"
+    },
+    "string": {
+      "name": "string",
+      "description": "A character string",
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "xsd:string"
+    },
+    "integer": {
+      "name": "integer",
+      "description": "An integer",
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "xsd:integer"
+    },
+    "boolean": {
+      "name": "boolean",
+      "description": "A binary (true or false) value",
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "xsd:boolean",
+      "repr": "bool"
+    },
+    "float": {
+      "name": "float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:float"
+    },
+    "double": {
+      "name": "double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "from_schema": "https://waldronlab.io",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:double"
+    },
+    "decimal": {
+      "name": "decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "from_schema": "https://waldronlab.io",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "xsd:decimal"
+    },
+    "time": {
+      "name": "time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time"
+      ],
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "xsd:time",
+      "repr": "str"
+    },
+    "date": {
+      "name": "date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time"
+      ],
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "xsd:date",
+      "repr": "str"
+    },
+    "datetime": {
+      "name": "datetime",
+      "description": "The combination of a date and time",
+      "from_schema": "https://waldronlab.io",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "xsd:dateTime",
+      "repr": "str"
+    },
+    "date_or_datetime": {
+      "name": "date_or_datetime",
+      "description": "Either a date or a datetime",
+      "from_schema": "https://waldronlab.io",
+      "base": "str",
+      "uri": "linkml:DateOrDatetime",
+      "repr": "str"
+    },
+    "uriorcurie": {
+      "name": "uriorcurie",
+      "description": "a URI or a CURIE",
+      "from_schema": "https://waldronlab.io",
+      "base": "URIorCURIE",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "curie": {
+      "name": "curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://waldronlab.io",
+      "base": "Curie",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "uri": {
+      "name": "uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://waldronlab.io",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "ncname": {
+      "name": "ncname",
+      "description": "Prefix part of CURIE",
+      "from_schema": "https://waldronlab.io",
+      "base": "NCName",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "objectidentifier": {
+      "name": "objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://waldronlab.io",
+      "base": "ElementIdentifier",
+      "uri": "shex:iri",
+      "repr": "str"
+    },
+    "nodeidentifier": {
+      "name": "nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "from_schema": "https://waldronlab.io",
+      "base": "NodeIdentifier",
+      "uri": "shex:nonLiteral",
+      "repr": "str"
+    },
+    "jsonpointer": {
+      "name": "jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "from_schema": "https://waldronlab.io",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "jsonpath": {
+      "name": "jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "from_schema": "https://waldronlab.io",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "sparqlpath": {
+      "name": "sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "from_schema": "https://waldronlab.io",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    }
+  },
+  "enums": {
+    "age menu": {
+      "name": "age menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "[0-9]+": {
+          "text": "[0-9]+",
+          "meaning": "NA"
+        }
+      }
+    },
+    "age_unit menu": {
+      "name": "age_unit menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "Day": {
+          "text": "Day",
+          "meaning": "NCIT:C25301"
+        },
+        "Week": {
+          "text": "Week",
+          "meaning": "NCIT:C29844"
+        },
+        "Month": {
+          "text": "Month",
+          "meaning": "NCIT:C29846"
+        },
+        "Year": {
+          "text": "Year",
+          "meaning": "NCIT:C29848"
+        }
+      }
+    },
+    "age_group menu": {
+      "name": "age_group menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "Adolescent": {
+          "text": "Adolescent",
+          "meaning": "NCIT:C27954"
+        },
+        "Adult": {
+          "text": "Adult",
+          "meaning": "NCIT:C49685"
+        },
+        "Children 2-11 Years Old": {
+          "text": "Children 2-11 Years Old",
+          "meaning": "NCIT:C49683"
+        },
+        "Elderly": {
+          "text": "Elderly",
+          "meaning": "NCIT:C16268"
+        },
+        "Infant": {
+          "text": "Infant",
+          "meaning": "NCIT:C27956"
+        }
+      }
+    },
+    "control menu": {
+      "name": "control menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "Study Control": {
+          "text": "Study Control",
+          "meaning": "NCIT:C142703"
+        },
+        "Case": {
+          "text": "Case",
+          "meaning": "NCIT:C49152"
+        },
+        "Not Used": {
+          "text": "Not Used",
+          "meaning": "NCIT:C69062"
+        }
+      }
+    },
+    "disease menu": {
+      "name": "disease menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "Hernia of the abdominal wall": {
+          "text": "Hernia of the abdominal wall",
+          "meaning": "HP:0004299"
+        },
+        "acute diarrhea": {
+          "text": "acute diarrhea",
+          "meaning": "DOID:0050140"
+        },
+        "atherosclerosis": {
+          "text": "atherosclerosis",
+          "meaning": "EFO:0003914"
+        },
+        "Alzheimer's disease": {
+          "text": "Alzheimer's disease",
+          "meaning": "EFO:0000249"
+        },
+        "adenocarcinoma": {
+          "text": "adenocarcinoma",
+          "meaning": "EFO:0000228"
+        },
+        "Adenoma": {
+          "text": "Adenoma",
+          "meaning": "NCIT:C2855"
+        },
+        "Allergic rhinitis": {
+          "text": "Allergic rhinitis",
+          "meaning": "HP:0003193"
+        },
+        "arthritis": {
+          "text": "arthritis",
+          "meaning": "EFO:0005856"
+        },
+        "ankylosing spondylitis": {
+          "text": "ankylosing spondylitis",
+          "meaning": "EFO:0003898"
+        },
+        "Ascaris lumbricoides": {
+          "text": "Ascaris lumbricoides",
+          "meaning": "NCIT:C122177"
+        },
+        "Ascites": {
+          "text": "Ascites",
+          "meaning": "HP:0001541"
+        },
+        "Asthma": {
+          "text": "Asthma",
+          "meaning": "NCIT:C28397"
+        },
+        "Behcet's syndrome": {
+          "text": "Behcet's syndrome",
+          "meaning": "EFO:0003780"
+        },
+        "bronchitis": {
+          "text": "bronchitis",
+          "meaning": "EFO:0009661"
+        },
+        "coronary artery disease": {
+          "text": "coronary artery disease",
+          "meaning": "EFO:0001645"
+        },
+        "carcinoma": {
+          "text": "carcinoma",
+          "meaning": "EFO:0000313"
+        },
+        "Crohn's disease": {
+          "text": "Crohn's disease",
+          "meaning": "EFO:0000384"
+        },
+        "clostridium difficile infection": {
+          "text": "clostridium difficile infection",
+          "meaning": "EFO:0009130"
+        },
+        "cellulitis": {
+          "text": "cellulitis",
+          "meaning": "EFO:0003035"
+        },
+        "Cephalosporin Antibiotic": {
+          "text": "Cephalosporin Antibiotic",
+          "meaning": "NCIT:C357"
+        },
+        "Cholera": {
+          "text": "Cholera",
+          "meaning": "NCIT:C157812"
+        },
+        "Hypercholesterolemia": {
+          "text": "Hypercholesterolemia",
+          "meaning": "HP:0003124"
+        },
+        "chorioamnionitis": {
+          "text": "chorioamnionitis",
+          "meaning": "EFO:0009948"
+        },
+        "cirrhosis of liver": {
+          "text": "cirrhosis of liver",
+          "meaning": "EFO:0001422"
+        },
+        "cytomegalovirus infection": {
+          "text": "cytomegalovirus infection",
+          "meaning": "EFO:0001062"
+        },
+        "celiac disease": {
+          "text": "celiac disease",
+          "meaning": "EFO:0001060"
+        },
+        "Study Control": {
+          "text": "Study Control",
+          "meaning": "NCIT:C142703"
+        },
+        "Cough": {
+          "text": "Cough",
+          "meaning": "HP:0012735"
+        },
+        "colorectal cancer": {
+          "text": "colorectal cancer",
+          "meaning": "EFO:0005842"
+        },
+        "cystitis": {
+          "text": "cystitis",
+          "meaning": "EFO:1000025"
+        },
+        "Donor": {
+          "text": "Donor",
+          "meaning": "NCIT:C48284"
+        },
+        "Entamoeba histolytica": {
+          "text": "Entamoeba histolytica",
+          "meaning": "NCIT:C122297"
+        },
+        "Fatty Liver": {
+          "text": "Fatty Liver",
+          "meaning": "OMIT:0006456"
+        },
+        "Fever": {
+          "text": "Fever",
+          "meaning": "HP:0001945"
+        },
+        "Polyps": {
+          "text": "Polyps",
+          "meaning": "OMIT:0012094"
+        },
+        "Schizophrenia": {
+          "text": "Schizophrenia",
+          "meaning": "NCIT:C3362"
+        },
+        "Fecal Microbiota Transplantation": {
+          "text": "Fecal Microbiota Transplantation",
+          "meaning": "NCIT:C118643"
+        },
+        "gangrene": {
+          "text": "gangrene",
+          "meaning": "EFO:0008574"
+        },
+        "Diabetes Mellitus": {
+          "text": "Diabetes Mellitus",
+          "meaning": "NCIT:C2985"
+        },
+        "gestational diabetes": {
+          "text": "gestational diabetes",
+          "meaning": "EFO:0004593"
+        },
+        "hepatitis B virus infection": {
+          "text": "hepatitis B virus infection",
+          "meaning": "EFO:0004197"
+        },
+        "Hepatitis C Infection": {
+          "text": "Hepatitis C Infection",
+          "meaning": "NCIT:C3098"
+        },
+        "hepatitis D virus infection": {
+          "text": "hepatitis D virus infection",
+          "meaning": "EFO:0007304"
+        },
+        "Healthy": {
+          "text": "Healthy",
+          "meaning": "NCIT:C115935"
+        },
+        "Hepatitis": {
+          "text": "Hepatitis",
+          "meaning": "HP:0012115"
+        },
+        "hepatitis E virus infection": {
+          "text": "hepatitis E virus infection",
+          "meaning": "EFO:0007303"
+        },
+        "Heart Failure": {
+          "text": "Heart Failure",
+          "meaning": "NCIT:C50577"
+        },
+        "Hookworm Infection": {
+          "text": "Hookworm Infection",
+          "meaning": "NCIT:C34702"
+        },
+        "human gut microbiome": {
+          "text": "human gut microbiome",
+          "meaning": "OHMI:0000020"
+        },
+        "human microbiome": {
+          "text": "human microbiome",
+          "meaning": "OHMI:0000002"
+        },
+        "human skin microbiome interaction": {
+          "text": "human skin microbiome interaction",
+          "meaning": "OHMI:0000121"
+        },
+        "hypertension": {
+          "text": "hypertension",
+          "meaning": "EFO:0000537"
+        },
+        "Inflammatory Bowel Disease": {
+          "text": "Inflammatory Bowel Disease",
+          "meaning": "NCIT:C3138"
+        },
+        "abnormal glucose tolerance": {
+          "text": "abnormal glucose tolerance",
+          "meaning": "EFO:0002546"
+        },
+        "indeterminate colitis": {
+          "text": "indeterminate colitis",
+          "meaning": "EFO:1000034"
+        },
+        "gastroenteritis": {
+          "text": "gastroenteritis",
+          "meaning": "EFO:1001463"
+        },
+        "Intestinal Flora": {
+          "text": "Intestinal Flora",
+          "meaning": "NCIT:C93019"
+        },
+        "Irritable Bowel Syndrome": {
+          "text": "Irritable Bowel Syndrome",
+          "meaning": "NCIT:C82343"
+        },
+        "large intestine adenoma": {
+          "text": "large intestine adenoma",
+          "meaning": "DOID:0050914"
+        },
+        "Metabolic Syndrome": {
+          "text": "Metabolic Syndrome",
+          "meaning": "NCIT:C84442"
+        },
+        "Mansonella perstans": {
+          "text": "Mansonella perstans",
+          "meaning": "NCIT:C119326"
+        },
+        "Multidrug-resistant bacteria (organism)": {
+          "text": "Multidrug-resistant bacteria (organism)",
+          "meaning": "713351000"
+        },
+        "myalgic encephalomeyelitis/chronic fatigue syndrome": {
+          "text": "myalgic encephalomeyelitis/chronic fatigue syndrome",
+          "meaning": "MONDO:0005404"
+        },
+        "melanoma": {
+          "text": "melanoma",
+          "meaning": "EFO:0000756"
+        },
+        "Melanoma Surgery": {
+          "text": "Melanoma Surgery",
+          "meaning": "NCIT:C157920"
+        },
+        "metabolic syndrome": {
+          "text": "metabolic syndrome",
+          "meaning": "EFO:0000195"
+        },
+        "Metastatic Malignant Neoplasm": {
+          "text": "Metastatic Malignant Neoplasm",
+          "meaning": "NCIT:C36263"
+        },
+        "Metastatic Malignant Neoplasm in the Adrenal Gland": {
+          "text": "Metastatic Malignant Neoplasm in the Adrenal Gland",
+          "meaning": "NCIT:C8610"
+        },
+        "Metastatic Malignant Neoplasm in the Bone": {
+          "text": "Metastatic Malignant Neoplasm in the Bone",
+          "meaning": "NCIT:C3580"
+        },
+        "Metastatic Malignant Neoplasm in the Liver": {
+          "text": "Metastatic Malignant Neoplasm in the Liver",
+          "meaning": "NCIT:C4758"
+        },
+        "Metastatic Malignant Neoplasm in the Lung": {
+          "text": "Metastatic Malignant Neoplasm in the Lung",
+          "meaning": "NCIT:C3577"
+        },
+        "Metastatic Malignant Neoplasm in the Lymph Nodes": {
+          "text": "Metastatic Malignant Neoplasm in the Lymph Nodes",
+          "meaning": "NCIT:C4904"
+        },
+        "Metastatic Squamous Cell Carcinoma": {
+          "text": "Metastatic Squamous Cell Carcinoma",
+          "meaning": "NCIT:C4104"
+        },
+        "Loa loa": {
+          "text": "Loa loa",
+          "meaning": "NCIT:C123512"
+        },
+        "Microfilaria": {
+          "text": "Microfilaria",
+          "meaning": "OMIT:0009896"
+        },
+        "Migraine": {
+          "text": "Migraine",
+          "meaning": "NCIT:C89715"
+        },
+        "Mucositis": {
+          "text": "Mucositis",
+          "meaning": "NCIT:C115965"
+        },
+        "Non-alcoholic Fatty Liver Disease": {
+          "text": "Non-alcoholic Fatty Liver Disease",
+          "meaning": "OMIT:0028679"
+        },
+        "Necator americanus": {
+          "text": "Necator americanus",
+          "meaning": "OMIT:0017611"
+        },
+        "Natural Killer Cell": {
+          "text": "Natural Killer Cell",
+          "meaning": "NCIT:C12536"
+        },
+        "Oral Microbiome": {
+          "text": "Oral Microbiome",
+          "meaning": "NCIT:C125208"
+        },
+        "Osteoarthritis": {
+          "text": "Osteoarthritis",
+          "meaning": "NCIT:C3293"
+        },
+        "otitis": {
+          "text": "otitis",
+          "meaning": "SYMP:0000873"
+        },
+        "Parkinson disease": {
+          "text": "Parkinson disease",
+          "meaning": "MONDO:0005180"
+        },
+        "Peri-Implantitis": {
+          "text": "Peri-Implantitis",
+          "meaning": "OMIT:0027030"
+        },
+        "Perianal fistula (disorder)": {
+          "text": "Perianal fistula (disorder)",
+          "meaning": "58103005"
+        },
+        "periodontitis": {
+          "text": "periodontitis",
+          "meaning": "EFO:0000649"
+        },
+        "Plasmodium falciparum": {
+          "text": "Plasmodium falciparum",
+          "meaning": "NCBITaxon:5833"
+        },
+        "pneumonia": {
+          "text": "pneumonia",
+          "meaning": "EFO:0003106"
+        },
+        "preeclampsia": {
+          "text": "preeclampsia",
+          "meaning": "EFO:0000668"
+        },
+        "Pre-capillary pulmonary hypertension": {
+          "text": "Pre-capillary pulmonary hypertension",
+          "meaning": "HP:0033578"
+        },
+        "premature birth": {
+          "text": "premature birth",
+          "meaning": "EFO:0003917"
+        },
+        "Prevotella copri": {
+          "text": "Prevotella copri",
+          "meaning": "NCBITaxon:165179"
+        },
+        "pyelonephritis": {
+          "text": "pyelonephritis",
+          "meaning": "EFO:1001141"
+        },
+        "rheumatoid arthritis": {
+          "text": "rheumatoid arthritis",
+          "meaning": "EFO:0000685"
+        },
+        "Schizophrenia,repeated": {
+          "text": "Schizophrenia,repeated",
+          "meaning": "EUPATH:0001011"
+        },
+        "Respiratory tract infection": {
+          "text": "Respiratory tract infection",
+          "meaning": "HP:0011947"
+        },
+        "salmonellosis": {
+          "text": "salmonellosis",
+          "meaning": "MONDO:0000827"
+        },
+        "Schistosoma": {
+          "text": "Schistosoma",
+          "meaning": "NCIT:C124285"
+        },
+        "sepsis": {
+          "text": "sepsis",
+          "meaning": "MP:0005044"
+        },
+        "Helminth": {
+          "text": "Helminth",
+          "meaning": "NCIT:C125642"
+        },
+        "Small Intestinal Adenoma": {
+          "text": "Small Intestinal Adenoma",
+          "meaning": "NCIT:C5340"
+        },
+        "Infection": {
+          "text": "Infection",
+          "meaning": "NCIT:C128320"
+        },
+        "Shiga Toxin-producing Escherichia coli": {
+          "text": "Shiga Toxin-producing Escherichia coli",
+          "meaning": "NCIT:C184689"
+        },
+        "Helminth,Transmitted,soil": {
+          "text": "Helminth,Transmitted,soil",
+          "meaning": "ENVO:00001998"
+        },
+        "stomatitis": {
+          "text": "stomatitis",
+          "meaning": "EFO:0009688"
+        },
+        "Infection,Suspected": {
+          "text": "Infection,Suspected",
+          "meaning": "NCIT:C71458"
+        },
+        "Type 1 Diabetes Mellitus": {
+          "text": "Type 1 Diabetes Mellitus",
+          "meaning": "NCIT:C2986"
+        },
+        "Type 2 Diabetes Mellitus": {
+          "text": "Type 2 Diabetes Mellitus",
+          "meaning": "NCIT:C26747"
+        },
+        "diarrhea": {
+          "text": "diarrhea",
+          "meaning": "MP:0005036"
+        },
+        "Tonsillitis": {
+          "text": "Tonsillitis",
+          "meaning": "NCIT:C116006"
+        },
+        "Colitis": {
+          "text": "Colitis",
+          "meaning": "OMIT:0004401"
+        },
+        "Trichomonas": {
+          "text": "Trichomonas",
+          "meaning": "NCIT:C89825"
+        },
+        "Trichuris trichiura": {
+          "text": "Trichuris trichiura",
+          "meaning": "NCIT:C125973"
+        },
+        "ulcerative colitis": {
+          "text": "ulcerative colitis",
+          "meaning": "EFO:0000729"
+        },
+        "undetermined colitis": {
+          "text": "undetermined colitis",
+          "meaning": "MONDO:0015176"
+        },
+        "Ureteric Stone": {
+          "text": "Ureteric Stone",
+          "meaning": "NCIT:C26902"
+        },
+        "uveitis": {
+          "text": "uveitis",
+          "meaning": "EFO:1001231"
+        },
+        "Vogt-Koyanagi-Harada disease": {
+          "text": "Vogt-Koyanagi-Harada disease",
+          "meaning": "MONDO:0018092"
+        },
+        "Weight loss": {
+          "text": "Weight loss",
+          "meaning": "HP:0001824"
+        },
+        "Wilson disease": {
+          "text": "Wilson disease",
+          "meaning": "MONDO:0010200"
+        },
+        "Wuchereria bancrofti": {
+          "text": "Wuchereria bancrofti",
+          "meaning": "NCIT:C122328"
+        }
+      }
+    },
+    "target_condition menu": {
+      "name": "target_condition menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "human gut microbiome": {
+          "text": "human gut microbiome",
+          "meaning": "OHMI:0000020"
+        },
+        "Parkinson disease": {
+          "text": "Parkinson disease",
+          "meaning": "MONDO:0005180"
+        },
+        "Oral Microbiome": {
+          "text": "Oral Microbiome",
+          "meaning": "NCIT:C125208"
+        },
+        "premature birth": {
+          "text": "premature birth",
+          "meaning": "EFO:0003917"
+        },
+        "Schizophrenia": {
+          "text": "Schizophrenia",
+          "meaning": "NCIT:C3362"
+        },
+        "rheumatoid arthritis": {
+          "text": "rheumatoid arthritis",
+          "meaning": "EFO:0000685"
+        },
+        "ankylosing spondylitis": {
+          "text": "ankylosing spondylitis",
+          "meaning": "EFO:0003898"
+        },
+        "Alzheimer's disease": {
+          "text": "Alzheimer's disease",
+          "meaning": "EFO:0000249"
+        },
+        "gestational diabetes": {
+          "text": "gestational diabetes",
+          "meaning": "EFO:0004593"
+        },
+        "chorioamnionitis": {
+          "text": "chorioamnionitis",
+          "meaning": "EFO:0009948"
+        },
+        "preeclampsia": {
+          "text": "preeclampsia",
+          "meaning": "EFO:0000668"
+        },
+        "acute diarrhea": {
+          "text": "acute diarrhea",
+          "meaning": "DOID:0050140"
+        },
+        "Cholera": {
+          "text": "Cholera",
+          "meaning": "NCIT:C157812"
+        },
+        "Prevotella copri": {
+          "text": "Prevotella copri",
+          "meaning": "NCBITaxon:165179"
+        },
+        "colorectal cancer": {
+          "text": "colorectal cancer",
+          "meaning": "EFO:0005842"
+        },
+        "carcinoma": {
+          "text": "carcinoma",
+          "meaning": "EFO:0000313"
+        },
+        "Adenoma": {
+          "text": "Adenoma",
+          "meaning": "NCIT:C2855"
+        },
+        "melanoma": {
+          "text": "melanoma",
+          "meaning": "EFO:0000756"
+        },
+        "Metastases status (attribute)": {
+          "text": "Metastases status (attribute)",
+          "meaning": "260874000"
+        },
+        "Peri-Implantitis": {
+          "text": "Peri-Implantitis",
+          "meaning": "OMIT:0027030"
+        },
+        "Mucositis": {
+          "text": "Mucositis",
+          "meaning": "NCIT:C115965"
+        },
+        "adenocarcinoma": {
+          "text": "adenocarcinoma",
+          "meaning": "EFO:0000228"
+        },
+        "Inflammatory Bowel Disease": {
+          "text": "Inflammatory Bowel Disease",
+          "meaning": "NCIT:C3138"
+        },
+        "Intestinal Flora": {
+          "text": "Intestinal Flora",
+          "meaning": "NCIT:C93019"
+        },
+        "Type 1 Diabetes Mellitus": {
+          "text": "Type 1 Diabetes Mellitus",
+          "meaning": "NCIT:C2986"
+        },
+        "human microbiome": {
+          "text": "human microbiome",
+          "meaning": "OHMI:0000002"
+        },
+        "abnormal glucose tolerance": {
+          "text": "abnormal glucose tolerance",
+          "meaning": "EFO:0002546"
+        },
+        "Type 2 Diabetes Mellitus": {
+          "text": "Type 2 Diabetes Mellitus",
+          "meaning": "NCIT:C26747"
+        },
+        "diarrhea": {
+          "text": "diarrhea",
+          "meaning": "MP:0005036"
+        },
+        "clostridium difficile infection": {
+          "text": "clostridium difficile infection",
+          "meaning": "EFO:0009130"
+        },
+        "Multidrug-resistant bacteria (organism)": {
+          "text": "Multidrug-resistant bacteria (organism)",
+          "meaning": "713351000"
+        },
+        "Crohn's disease": {
+          "text": "Crohn's disease",
+          "meaning": "EFO:0000384"
+        },
+        "atherosclerosis": {
+          "text": "atherosclerosis",
+          "meaning": "EFO:0003914"
+        },
+        "hypertension": {
+          "text": "hypertension",
+          "meaning": "EFO:0000537"
+        },
+        "metabolic syndrome": {
+          "text": "metabolic syndrome",
+          "meaning": "EFO:0000195"
+        },
+        "Shiga Toxin-producing Escherichia coli": {
+          "text": "Shiga Toxin-producing Escherichia coli",
+          "meaning": "NCIT:C184689"
+        },
+        "Non-alcoholic Fatty Liver Disease": {
+          "text": "Non-alcoholic Fatty Liver Disease",
+          "meaning": "OMIT:0028679"
+        },
+        "Weight loss": {
+          "text": "Weight loss",
+          "meaning": "HP:0001824"
+        },
+        "Metabolic Syndrome": {
+          "text": "Metabolic Syndrome",
+          "meaning": "NCIT:C84442"
+        },
+        "control": {
+          "text": "control",
+          "meaning": "EFO:0001461"
+        },
+        "Heart Failure": {
+          "text": "Heart Failure",
+          "meaning": "NCIT:C50577"
+        },
+        "myalgic encephalomeyelitis/chronic fatigue syndrome": {
+          "text": "myalgic encephalomeyelitis/chronic fatigue syndrome",
+          "meaning": "MONDO:0005404"
+        },
+        "human skin microbiome interaction": {
+          "text": "human skin microbiome interaction",
+          "meaning": "OHMI:0000121"
+        },
+        "cirrhosis of liver": {
+          "text": "cirrhosis of liver",
+          "meaning": "EFO:0001422"
+        },
+        "Cephalosporin Antibiotic": {
+          "text": "Cephalosporin Antibiotic",
+          "meaning": "NCIT:C357"
+        },
+        "Helminth": {
+          "text": "Helminth",
+          "meaning": "NCIT:C125642"
+        },
+        "periodontitis": {
+          "text": "periodontitis",
+          "meaning": "EFO:0000649"
+        },
+        "arthritis": {
+          "text": "arthritis",
+          "meaning": "EFO:0005856"
+        },
+        "psoriasis": {
+          "text": "psoriasis",
+          "meaning": "EFO:0000676"
+        },
+        "otitis": {
+          "text": "otitis",
+          "meaning": "SYMP:0000873"
+        },
+        "pneumonia": {
+          "text": "pneumonia",
+          "meaning": "EFO:0003106"
+        },
+        "bronchitis": {
+          "text": "bronchitis",
+          "meaning": "EFO:0009661"
+        },
+        "Respiratory tract infection": {
+          "text": "Respiratory tract infection",
+          "meaning": "HP:0011947"
+        },
+        "sepsis": {
+          "text": "sepsis",
+          "meaning": "MP:0005044"
+        },
+        "Skin Infection": {
+          "text": "Skin Infection",
+          "meaning": "NCIT:C35025"
+        },
+        "Cough": {
+          "text": "Cough",
+          "meaning": "HP:0012735"
+        },
+        "gastroenteritis": {
+          "text": "gastroenteritis",
+          "meaning": "EFO:1001463"
+        },
+        "Tonsillitis": {
+          "text": "Tonsillitis",
+          "meaning": "NCIT:C116006"
+        },
+        "pyelonephritis": {
+          "text": "pyelonephritis",
+          "meaning": "EFO:1001141"
+        },
+        "cystitis": {
+          "text": "cystitis",
+          "meaning": "EFO:1000025"
+        },
+        "Fever": {
+          "text": "Fever",
+          "meaning": "HP:0001945"
+        },
+        "Infection": {
+          "text": "Infection",
+          "meaning": "NCIT:C128320"
+        },
+        "stomatitis": {
+          "text": "stomatitis",
+          "meaning": "EFO:0009688"
+        },
+        "salmonellosis": {
+          "text": "salmonellosis",
+          "meaning": "MONDO:0000827"
+        },
+        "Migraine": {
+          "text": "Migraine",
+          "meaning": "NCIT:C89715"
+        },
+        "Asthma": {
+          "text": "Asthma",
+          "meaning": "NCIT:C28397"
+        },
+        "Behcet's syndrome": {
+          "text": "Behcet's syndrome",
+          "meaning": "EFO:0003780"
+        }
+      }
+    },
+    "treatment menu": {
+      "name": "treatment menu",
+      "from_schema": "https://waldronlab.io",
+      "permissible_values": {
+        "Mesalamine": {
+          "text": "Mesalamine",
+          "meaning": "NCIT:C29249"
+        },
+        "Acarbose": {
+          "text": "Acarbose",
+          "meaning": "NCIT:C983"
+        },
+        "Angiotensin-Converting Enzyme Inhibitors": {
+          "text": "Angiotensin-Converting Enzyme Inhibitors",
+          "meaning": "SCDO:0000055"
+        },
+        "Albendazole": {
+          "text": "Albendazole",
+          "meaning": "NCIT:C47384"
+        },
+        "Amiodarone": {
+          "text": "Amiodarone",
+          "meaning": "NCIT:C62002"
+        },
+        "EC 3.4.23.15 (renin) inhibitor": {
+          "text": "EC 3.4.23.15 (renin) inhibitor",
+          "meaning": "CHEBI:166822"
+        },
+        "Antihelminthic Agent": {
+          "text": "Antihelminthic Agent",
+          "meaning": "NCIT:C250"
+        },
+        "Antihypertensive Agents": {
+          "text": "Antihypertensive Agents",
+          "meaning": "SCDO:0000067"
+        },
+        "Anti-Retroviral Agents": {
+          "text": "Anti-Retroviral Agents",
+          "meaning": "OMIT:0023531"
+        },
+        "antiviral drug": {
+          "text": "antiviral drug",
+          "meaning": "CHEBI:36044"
+        },
+        "Anti-diabetic Agent": {
+          "text": "Anti-diabetic Agent",
+          "meaning": "NCIT:C29711"
+        },
+        "Antilipidemic Agent": {
+          "text": "Antilipidemic Agent",
+          "meaning": "NCIT:C29703"
+        },
+        "Antineoplastic Agent": {
+          "text": "Antineoplastic Agent",
+          "meaning": "NCIT:C274"
+        },
+        "Thrombolytic Agent": {
+          "text": "Thrombolytic Agent",
+          "meaning": "NCIT:C29750"
+        },
+        "Aspirin": {
+          "text": "Aspirin",
+          "meaning": "NCIT:C287"
+        },
+        "Angiotensin II Receptor Antagonist": {
+          "text": "Angiotensin II Receptor Antagonist",
+          "meaning": "NCIT:C66930"
+        },
+        "Azathioprine": {
+          "text": "Azathioprine",
+          "meaning": "NCIT:C290"
+        },
+        "Beta-Adrenergic Antagonist": {
+          "text": "Beta-Adrenergic Antagonist",
+          "meaning": "NCIT:C29576"
+        },
+        "Calcium Channel Blocker": {
+          "text": "Calcium Channel Blocker",
+          "meaning": "NCIT:C333"
+        },
+        "Clopidogrel": {
+          "text": "Clopidogrel",
+          "meaning": "NCIT:C61686"
+        },
+        "Corticosteroid": {
+          "text": "Corticosteroid",
+          "meaning": "NCIT:C2322"
+        },
+        "Anti-CTLA-4 Monoclonal Antibody": {
+          "text": "Anti-CTLA-4 Monoclonal Antibody",
+          "meaning": "NCIT:C128036"
+        },
+        "Centrally acting hypotensive agent (substance)": {
+          "text": "Centrally acting hypotensive agent (substance)",
+          "meaning": "372740001"
+        },
+        "Coumarin": {
+          "text": "Coumarin",
+          "meaning": "NCIT:C397"
+        },
+        "Digitalis": {
+          "text": "Digitalis",
+          "meaning": "NCIT:C65385"
+        },
+        "Diuretic": {
+          "text": "Diuretic",
+          "meaning": "NCIT:C448"
+        },
+        "Dopamine Antagonist": {
+          "text": "Dopamine Antagonist",
+          "meaning": "NCIT:C66883"
+        },
+        "Dipeptidyl-Peptidase IV Inhibitors": {
+          "text": "Dipeptidyl-Peptidase IV Inhibitors",
+          "meaning": "OMIT:0026067"
+        },
+        "Enteral Nutrition": {
+          "text": "Enteral Nutrition",
+          "meaning": "OMIT:0005993"
+        },
+        "Ezetimibe": {
+          "text": "Ezetimibe",
+          "meaning": "NCIT:C47529"
+        },
+        "fibrate": {
+          "text": "fibrate",
+          "meaning": "TXPO:1000442"
+        },
+        "Folate": {
+          "text": "Folate",
+          "meaning": "NCIT:C1444"
+        },
+        "Dietary Supplement": {
+          "text": "Dietary Supplement",
+          "meaning": "NCIT:C1505"
+        },
+        "Insulin Glargine": {
+          "text": "Insulin Glargine",
+          "meaning": "NCIT:C47564"
+        },
+        "Thiazolidinedione Antidiabetic Agent": {
+          "text": "Thiazolidinedione Antidiabetic Agent",
+          "meaning": "NCIT:C98241"
+        },
+        "glucagon-like peptide-1 receptor agonist": {
+          "text": "glucagon-like peptide-1 receptor agonist",
+          "meaning": "CHEBI:71196"
+        },
+        "Heparin": {
+          "text": "Heparin",
+          "meaning": "NCIT:C539"
+        },
+        "Insulin": {
+          "text": "Insulin",
+          "meaning": "NCIT:C2271"
+        },
+        "Ipilimumab": {
+          "text": "Ipilimumab",
+          "meaning": "NCIT:C2654"
+        },
+        "Iron": {
+          "text": "Iron",
+          "meaning": "NCIT:C598"
+        },
+        "Isophane Insulin, Human": {
+          "text": "Isophane Insulin, Human",
+          "meaning": "OMIT:0001345"
+        },
+        "Potassium-Sparing Diuretic": {
+          "text": "Potassium-Sparing Diuretic",
+          "meaning": "NCIT:C49186"
+        },
+        "lactulose": {
+          "text": "lactulose",
+          "meaning": "CHEBI:6359"
+        },
+        "Laxative": {
+          "text": "Laxative",
+          "meaning": "NCIT:C29697"
+        },
+        "Metformin": {
+          "text": "Metformin",
+          "meaning": "NCIT:C61612"
+        },
+        "Metformin Hydrochloride": {
+          "text": "Metformin Hydrochloride",
+          "meaning": "NCIT:C29251"
+        },
+        "Methotrexate": {
+          "text": "Methotrexate",
+          "meaning": "NCIT:C642"
+        },
+        "Pediatric Nutritional Supplement Drink": {
+          "text": "Pediatric Nutritional Supplement Drink",
+          "meaning": "NCIT:C74453"
+        },
+        "Nitrate": {
+          "text": "Nitrate",
+          "meaning": "NCIT:C80487"
+        },
+        "Nivolumab": {
+          "text": "Nivolumab",
+          "meaning": "NCIT:C68814"
+        },
+        "None": {
+          "text": "None",
+          "meaning": "NCIT:C41132"
+        },
+        "Insulin Aspart": {
+          "text": "Insulin Aspart",
+          "meaning": "NCIT:C47563"
+        },
+        "Nonsteroidal Antiinflammatory Drug": {
+          "text": "Nonsteroidal Antiinflammatory Drug",
+          "meaning": "NCIT:C257"
+        },
+        "Opioid": {
+          "text": "Opioid",
+          "meaning": "NCIT:C1506"
+        },
+        "Anti-Arrhythmia Agents": {
+          "text": "Anti-Arrhythmia Agents",
+          "meaning": "OMIT:0002291"
+        },
+        "Anti-PD1 Monoclonal Antibody": {
+          "text": "Anti-PD1 Monoclonal Antibody",
+          "meaning": "NCIT:C128037"
+        },
+        "Pembrolizumab": {
+          "text": "Pembrolizumab",
+          "meaning": "NCIT:C106432"
+        },
+        "Phenylpiperidine derivative (substance)": {
+          "text": "Phenylpiperidine derivative (substance)",
+          "meaning": "48070003"
+        },
+        "Proton Pump Inhibitor": {
+          "text": "Proton Pump Inhibitor",
+          "meaning": "NCIT:C29723"
+        },
+        "Probiotics": {
+          "text": "Probiotics",
+          "meaning": "OMIT:0019903"
+        },
+        "red yeast rice": {
+          "text": "red yeast rice",
+          "meaning": "DRON:00017677"
+        },
+        "Reverse Transcriptase Inhibitor": {
+          "text": "Reverse Transcriptase Inhibitor",
+          "meaning": "NCIT:C1589"
+        },
+        "sodium-glucose transport protein subtype 2 inhibitor": {
+          "text": "sodium-glucose transport protein subtype 2 inhibitor",
+          "meaning": "CHEBI:73273"
+        },
+        "Sitagliptin": {
+          "text": "Sitagliptin",
+          "meaning": "NCIT:C73838"
+        },
+        "statin": {
+          "text": "statin",
+          "meaning": "CHEBI:87631"
+        },
+        "Steroid Compound": {
+          "text": "Steroid Compound",
+          "meaning": "NCIT:C843"
+        },
+        "Sulfonylurea Antidiabetic Agent": {
+          "text": "Sulfonylurea Antidiabetic Agent",
+          "meaning": "NCIT:C97936"
+        },
+        "Thiazide Diuretic": {
+          "text": "Thiazide Diuretic",
+          "meaning": "NCIT:C49185"
+        },
+        "second generation antipsychotic": {
+          "text": "second generation antipsychotic",
+          "meaning": "CHEBI:65191"
+        },
+        "Citrate-containing Alkalinizing Agent": {
+          "text": "Citrate-containing Alkalinizing Agent",
+          "meaning": "NCIT:C29369"
+        },
+        "Xanthine Oxidase Inhibitor": {
+          "text": "Xanthine Oxidase Inhibitor",
+          "meaning": "NCIT:C1637"
+        }
+      }
+    }
+  },
+  "slots": {
+    "sample_id": {
+      "name": "sample_id",
+      "description": "The user-defined name for the sample.",
+      "title": "sample_id",
+      "from_schema": "https://waldronlab.io",
+      "identifier": true,
+      "range": "WhitespaceMinimizedString",
+      "required": true
+    },
+    "age": {
+      "name": "age",
+      "description": "Age of the subject using the unit specified under 'age_unit' column",
+      "title": "age",
+      "examples": [
+        {
+          "value": "2"
+        }
+      ],
+      "from_schema": "https://waldronlab.io",
+      "slot_uri": "NCIT:C25150",
+      "range": "integer",
+      "minimum_value": 0,
+      "maximum_value": 200
+    },
+    "age_unit": {
+      "name": "age_unit",
+      "description": "Unit of the subject's age specified under 'age' column",
+      "title": "age_unit",
+      "examples": [
+        {
+          "value": "Year"
+        }
+      ],
+      "from_schema": "https://waldronlab.io",
+      "slot_uri": "NCIT:C50400",
+      "range": "age unit menu",
+      "structured_pattern": {
+        "syntax": "{Title_Case}",
+        "interpolated": true,
+        "partial_match": false
+      }
+    },
+    "age_group": {
+      "name": "age_group",
+      "description": "11 <= Adolescent < 18|18 <= Adult < 65|2 <= Children 2-11 Years Old < 11|65 <= Elderly < 130|0 <= Infant < 2",
+      "title": "age_group",
+      "examples": [
+        {
+          "value": "Children 2-11 Years Old"
+        }
+      ],
+      "from_schema": "https://waldronlab.io",
+      "slot_uri": "NCIT:C20587",
+      "range": "age group menu",
+      "recommended": true
+    },
+    "control": {
+      "name": "control",
+      "description": "Whether the sample is control, case, or not used in the study",
+      "title": "control",
+      "examples": [
+        {
+          "value": "Study Control"
+        }
+      ],
+      "from_schema": "https://waldronlab.io",
+      "range": "control menu",
+      "required": true
+    },
+    "target_condition": {
+      "name": "target_condition",
+      "description": "Main phenotype(s) of interest in a given study",
+      "title": "target_condition",
+      "from_schema": "https://waldronlab.io",
+      "multivalued": true,
+      "range": "target condition menu",
+      "required": true
+    },
+    "disease": {
+      "name": "disease",
+      "description": "Reported disease type(s) for a participant. 'Healthy' if no disease assessed under a given study is detected",
+      "title": "disease",
+      "from_schema": "https://waldronlab.io",
+      "multivalued": true,
+      "range": "disease menu"
+    },
+    "treatment": {
+      "name": "treatment",
+      "description": "Medications or treatments against the diseases",
+      "title": "treatment",
+      "from_schema": "https://waldronlab.io",
+      "multivalued": true,
+      "range": "treatment menu"
+    }
+  },
+  "classes": {
+    "Container": {
+      "name": "Container",
+      "from_schema": "https://waldronlab.io",
+      "attributes": {
+        "samples": {
+          "name": "samples",
+          "from_schema": "https://waldronlab.io",
+          "multivalued": true,
+          "alias": "samples",
+          "owner": "Container",
+          "domain_of": [
+            "Container"
+          ],
+          "range": "Sample",
+          "inlined_as_list": true
+        }
+      },
+      "tree_root": true
+    },
+    "Sample": {
+      "name": "Sample",
+      "from_schema": "https://waldronlab.io",
+      "slot_usage": {
+        "sample_id": {
+          "name": "sample_id",
+          "rank": 1,
+          "slot_group": "Database Identifiers"
+        },
+        "age": {
+          "name": "age",
+          "rank": 2,
+          "slot_group": "Participant"
+        },
+        "age_unit": {
+          "name": "age_unit",
+          "rank": 3,
+          "slot_group": "Participant"
+        },
+        "age_group": {
+          "name": "age_group",
+          "rank": 4,
+          "slot_group": "Participant"
+        },
+        "control": {
+          "name": "control",
+          "rank": 5,
+          "slot_group": "Participant"
+        },
+        "target_condition": {
+          "name": "target_condition",
+          "rank": 6,
+          "slot_group": "Participant"
+        },
+        "disease": {
+          "name": "disease",
+          "rank": 7,
+          "slot_group": "Participant"
+        },
+        "treatment": {
+          "name": "treatment",
+          "rank": 8,
+          "slot_group": "Participant"
+        }
+      },
+      "attributes": {
+        "sample_id": {
+          "name": "sample_id",
+          "description": "The user-defined name for the sample.",
+          "title": "sample_id",
+          "from_schema": "https://waldronlab.io",
+          "rank": 1,
+          "identifier": true,
+          "alias": "sample_id",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Database Identifiers",
+          "range": "WhitespaceMinimizedString",
+          "required": true
+        },
+        "age": {
+          "name": "age",
+          "description": "Age of the subject using the unit specified under 'age_unit' column",
+          "title": "age",
+          "from_schema": "https://waldronlab.io",
+          "rank": 2,
+          "slot_uri": "NCIT:C25150",
+          "alias": "age",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "integer",
+          "minimum_value": 0,
+          "maximum_value": 200
+        },
+        "age_unit": {
+          "name": "age_unit",
+          "description": "Unit of the subject's age specified under 'age' column",
+          "title": "age_unit",
+          "from_schema": "https://waldronlab.io",
+          "rank": 3,
+          "slot_uri": "NCIT:C50400",
+          "alias": "age_unit",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "age unit menu",
+          "structured_pattern": {
+            "syntax": "{Title_Case}",
+            "interpolated": true,
+            "partial_match": false
+          }
+        },
+        "age_group": {
+          "name": "age_group",
+          "description": "11 <= Adolescent < 18|18 <= Adult < 65|2 <= Children 2-11 Years Old < 11|65 <= Elderly < 130|0 <= Infant < 2",
+          "title": "age_group",
+          "from_schema": "https://waldronlab.io",
+          "rank": 4,
+          "slot_uri": "NCIT:C20587",
+          "alias": "age_group",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "age group menu",
+          "recommended": true
+        },
+        "control": {
+          "name": "control",
+          "description": "Whether the sample is control, case, or not used in the study",
+          "title": "control",
+          "from_schema": "https://waldronlab.io",
+          "rank": 5,
+          "alias": "control",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "control menu",
+          "required": true
+        },
+        "target_condition": {
+          "name": "target_condition",
+          "description": "Main phenotype(s) of interest in a given study",
+          "title": "target_condition",
+          "from_schema": "https://waldronlab.io",
+          "rank": 6,
+          "multivalued": true,
+          "alias": "target_condition",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "target condition menu",
+          "required": true
+        },
+        "disease": {
+          "name": "disease",
+          "description": "Reported disease type(s) for a participant. 'Healthy' if no disease assessed under a given study is detected",
+          "title": "disease",
+          "from_schema": "https://waldronlab.io",
+          "rank": 7,
+          "multivalued": true,
+          "alias": "disease",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "disease menu"
+        },
+        "treatment": {
+          "name": "treatment",
+          "description": "Medications or treatments against the diseases",
+          "title": "treatment",
+          "from_schema": "https://waldronlab.io",
+          "rank": 8,
+          "multivalued": true,
+          "alias": "treatment",
+          "owner": "Sample",
+          "domain_of": [
+            "Sample"
+          ],
+          "slot_group": "Participant",
+          "range": "treatment menu"
+        }
+      }
+    }
+  },
+  "source_file": "schema.yaml",
+  "@type": "SchemaDefinition"
+}
