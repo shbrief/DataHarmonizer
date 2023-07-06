@@ -64,12 +64,12 @@
     "Container": {
       "name": "Container",
       "status": "published",
-      "display": false
+      "display": true
     },
     "Sample": {
       "name": "Sample",
       "status": "published",
-      "display": false
+      "display": true
     }
   }
 }
